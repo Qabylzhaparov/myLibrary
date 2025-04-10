@@ -30,4 +30,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "impl"
 include(":app")
-include(":mylibrary")

@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":mylibrary"))
+    implementation("com.github.Qabylzhaparov:myLibrary:1.0")
 
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
