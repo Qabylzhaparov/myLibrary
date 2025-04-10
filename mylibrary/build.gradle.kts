@@ -1,7 +1,11 @@
 plugins {
     id("com.android.library")
     alias(libs.plugins.kotlin.android)
+    id("maven-publish")
 }
+
+group = "com.github.Qabylzhaparov"
+version = "1.0.0"
 
 android {
     namespace = "com.example.mylibrary"
@@ -50,4 +54,29 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     testImplementation(libs.junit)
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+
+                groupId = "com.example"
+                artifactId = "mylibrary"
+                version = "1.0.0"
+            }
+        }
+
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/Qabylzhaparov/myLibrary")
+                credentials {
+                    username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
+                    password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
+    }
 }

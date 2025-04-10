@@ -11,10 +11,10 @@ pluginManagement {
         gradlePluginPortal()
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/Qabylzhaparov/lab2")
+            url = uri("https://maven.pkg.github.com/Qabylzhaparov/myLibrary")
             credentials {
-                username = System.getenv("GITHUB_USERNAME")  // Используем переменную окружения для имени пользователя
-                password = System.getenv("GITHUB_TOKEN")    // Используем переменную окружения для токена
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
@@ -24,9 +24,14 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }
+        maven {
+            url = uri("https://maven.pkg.github.com/Qabylzhaparov/myLibrary")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
 
-rootProject.name = "impl"
 include(":app")
